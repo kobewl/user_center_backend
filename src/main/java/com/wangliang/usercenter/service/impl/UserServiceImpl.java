@@ -2,6 +2,8 @@ package com.wangliang.usercenter.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wangliang.usercenter.common.ErrorCode;
+import com.wangliang.usercenter.exception.BusinessException;
 import com.wangliang.usercenter.model.domain.User;
 import com.wangliang.usercenter.service.UserService;
 import com.wangliang.usercenter.mapper.UserMapper;
@@ -37,9 +39,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     private static final String SALT = "kobe";
 
     @Override
-    public long userRegister(String userAccount, String userPassword, String checkPassword) {
+    public long userRegister(String userAccount, String userPassword, String checkPassword, String planetCode) {
         // 1. 校验
-        if (StringUtils.isAnyBlank(userAccount, userPassword, checkPassword)) {
+        if (StringUtils.isAnyBlank(userAccount, userPassword, checkPassword, planetCode)) {
             // todo 修改为自定义异常
             return -1;
         }
@@ -47,6 +49,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             return -1;
         }
         if (userPassword.length() < 8 || checkPassword.length() < 8) {
+            return -1;
+        }
+        if (planetCode.length() > 5){
             return -1;
         }
         // 账户不能包含特殊字符
@@ -65,6 +70,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         long count = userMapper.selectCount(queryWrapper);
         if (count > 0) {
             return -1;
+        }
+        // 星球编号不能重复
+        queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("planetCode", planetCode);
+        count = userMapper.selectCount(queryWrapper);
+        if (count > 0){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "编号重复");
         }
 
         // 2.加密
@@ -137,6 +149,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      */
     @Override
     public User getSafetyUser(User originUser){
+        if (originUser == null){
+            return null;
+        }
         User safetyUser = new User();
         safetyUser.setId(originUser.getId());
         safetyUser.setUsername(originUser.getUsername());
@@ -149,6 +164,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         safetyUser.setUserStatus(originUser.getUserStatus());
         safetyUser.setCreateTime(originUser.getCreateTime());
         return safetyUser;
+    }
+
+    /**
+     * 用户注销，移除登录态
+     * @param request
+     */
+    @Override
+    public int userLogout(HttpServletRequest request) {
+        request.getSession().removeAttribute(USER_LOGIN_STATE);
+        return 200;
     }
 }
 

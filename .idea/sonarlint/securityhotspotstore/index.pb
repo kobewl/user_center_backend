@@ -25,10 +25,6 @@ Qsrc/main/java/com/wangliang/usercenter/model/domain/request/UserLoginRequest.ja
 -.idea/httpRequests/2024-04-07T213433.200.json,6\6\6679c9353d55fa20094e8ad44a57f48e79b7ad45
 ]
 -.idea/httpRequests/2024-04-07T214753.200.json,3\2\32d508ca3b3b8661d2d0f3f75da2d718acd4dee5
-o
-?src/main/java/com/wangliang/usercenter/contant/UserContant.java,5\9\59f474efc0bc278ffac29c592417162bb5ee7eba
-p
-@src/main/java/com/wangliang/usercenter/contant/UserConstant.java,f\3\f3563c2958a06d2a49bf76557b9231f72d669d48
 q
 Asrc/main/java/com/wangliang/usercenter/constant/UserConstant.java,2\2\22efa650dcbcea6021b52dda3f0567ff04383975
 ]
@@ -43,3 +39,19 @@ m
 =src/main/java/com/wangliang/usercenter/mapper/UserMapper.java,c\e\cefcb173cea3944cb19fb8dda7b10c3f1d7b7f6b
 ]
 -.idea/httpRequests/2024-04-08T212919.200.json,2\f\2fb6cee339e091be954c5c44f5fa1dca9870b34e
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+o
+?src/main/java/com/wangliang/usercenter/common/BaseResponse.java,f\2\f295497123141724519196b9d59ff074d9b4f5fb
+l
+<src/main/java/com/wangliang/usercenter/common/ErrorCode.java,3\a\3ae8255998d632378e9a0d078a3d44e49c7abec0
+n
+>src/main/java/com/wangliang/usercenter/common/ResultUtils.java,4\0\409e82fa202862699ea7cc8666006e949fcdb379
+w
+Gsrc/main/java/com/wangliang/usercenter/exception/BusinessException.java,0\5\05d16a79bca968c53aa44a81f755d74d94a3082c
+|
+Lsrc/main/java/com/wangliang/usercenter/exception/GlobalExceptionHandler.java,4\e\4e58040cf870a6c719d892d7fc8dbaa7777d06d6
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0

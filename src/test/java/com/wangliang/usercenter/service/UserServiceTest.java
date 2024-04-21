@@ -35,34 +35,35 @@ public class UserServiceTest {
         String userAccount = "wlwl";
         String userPassword = "";
         String checkPassword = "12345678";
-        long result = userService.userRegister(userAccount, userPassword, checkPassword);
+        String plantcode = "1";
+        long result = userService.userRegister(userAccount, userPassword, checkPassword, plantcode);
         Assertions.assertEquals(-1,result);
         // 2. userAccount < 4
         userAccount = "wl";
-        result = userService.userRegister(userAccount, userPassword, checkPassword);
+        result = userService.userRegister(userAccount, userPassword, checkPassword, plantcode);
         Assertions.assertEquals(-1,result);
         // 3.userPassword < 8
         userAccount = "wlwl";
         userPassword = "1234567";
-        result = userService.userRegister(userAccount, userPassword, checkPassword);
+        result = userService.userRegister(userAccount, userPassword, checkPassword, plantcode);
         Assertions.assertEquals(-1,result);
         // 4.userAccount包含特殊字符
         userAccount = "w[lwl";
         userPassword = "12345678";
-        result = userService.userRegister(userAccount, userPassword, checkPassword);
+        result = userService.userRegister(userAccount, userPassword, checkPassword, plantcode);
         Assertions.assertEquals(-1,result);
         // 5.checkPassword不一致
         checkPassword = "123456789";
-        result = userService.userRegister(userAccount, userPassword, checkPassword);
+        result = userService.userRegister(userAccount, userPassword, checkPassword, plantcode);
         Assertions.assertEquals(-1,result);
         // 6.userAccount重复
         userAccount = "wangliang";
         checkPassword = "12345678";
-        result = userService.userRegister(userAccount, userPassword, checkPassword);
+        result = userService.userRegister(userAccount, userPassword, checkPassword, plantcode);
         Assertions.assertEquals(-1,result);
         // 7.注册用户kobe
         userAccount = "ko【be";
-        result = userService.userRegister(userAccount, userPassword, checkPassword);
+        result = userService.userRegister(userAccount, userPassword, checkPassword, plantcode);
         Assertions.assertTrue(result > 0);
     }
 }
